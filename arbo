@@ -1,0 +1,309 @@
+Ca marche pas superbatou@Cedrus-Atlantica:~/batouLabV0/batouLab$ tree -a -L 5 -I "$EXCLUDES|*/backup_*/*"
+.
+├── arbo
+├── backup_1756659637
+│   ├── conversation.ts
+│   ├── crypto.ts
+│   ├── main.rs
+│   └── PassphraseManager.tsx
+├── backup_1756663405
+│   ├── package.json
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── assets
+│   │   │   └── react.svg
+│   │   ├── components
+│   │   │   ├── ApiKeysPage.tsx
+│   │   │   ├── ChatLite.tsx
+│   │   │   ├── ChatLite.tsx.bak
+│   │   │   ├── ChatWithHistory.tsx
+│   │   │   └── PassphraseManager.tsx
+│   │   ├── main.tsx
+│   │   ├── storage
+│   │   │   ├── ChatWithHistory.tsx
+│   │   │   ├── conversation.ts
+│   │   │   ├── crypto.ts
+│   │   │   └── PassphraseManager.tsx
+│   │   └── vite-env.d.ts
+│   ├── src-tauri
+│   │   ├── build.rs
+│   │   ├── capabilities
+│   │   │   └── default.json
+│   │   ├── Cargo.lock
+│   │   ├── Cargo.toml
+│   │   ├── Cargo.toml.bak
+│   │   ├── gen
+│   │   │   └── schemas
+│   │   │       ├── acl-manifests.json
+│   │   │       ├── capabilities.json
+│   │   │       ├── desktop-schema.json
+│   │   │       └── linux-schema.json
+│   │   ├── .gitignore
+│   │   ├── icons
+│   │   │   ├── 128x128@2x.png
+│   │   │   ├── 128x128.png
+│   │   │   ├── 32x32.png
+│   │   │   ├── icon.icns
+│   │   │   ├── icon.ico
+│   │   │   ├── icon.png
+│   │   │   ├── Square107x107Logo.png
+│   │   │   ├── Square142x142Logo.png
+│   │   │   ├── Square150x150Logo.png
+│   │   │   ├── Square284x284Logo.png
+│   │   │   ├── Square30x30Logo.png
+│   │   │   ├── Square310x310Logo.png
+│   │   │   ├── Square44x44Logo.png
+│   │   │   ├── Square71x71Logo.png
+│   │   │   ├── Square89x89Logo.png
+│   │   │   └── StoreLogo.png
+│   │   ├── src
+│   │   │   ├── keys.rs
+│   │   │   ├── lib.rs
+│   │   │   ├── main.rs
+│   │   │   └── main.rs.bak
+│   │   └── tauri.conf.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── tsconfig.tmp
+├── backup_1756663868
+│   ├── main.rs
+│   └── PassphraseManager.tsx
+├── backup_1756665852_main.rs
+├── backup_1756667493_main.rs
+├── backup_1756669163_main.rs
+├── backup_1756669263_main.rs
+├── backup_1756672546
+├── backup_1756672546_main.rs
+├── backup_1756674802
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── assets
+│   │   │   └── react.svg
+│   │   ├── components
+│   │   │   ├── ApiKeysPage.tsx
+│   │   │   ├── ChatLite.tsx
+│   │   │   ├── ChatLite.tsx.bak
+│   │   │   ├── ChatWithHistory.tsx
+│   │   │   └── PassphraseManager.tsx
+│   │   ├── main.tsx
+│   │   ├── storage
+│   │   │   ├── conversation.ts
+│   │   │   └── crypto.ts
+│   │   └── vite-env.d.ts
+│   └── src-tauri
+│       ├── build.rs
+│       ├── capabilities
+│       │   └── default.json
+│       ├── Cargo.lock
+│       ├── Cargo.toml
+│       ├── Cargo.toml.bak
+│       ├── gen
+│       │   └── schemas
+│       │       ├── acl-manifests.json
+│       │       ├── capabilities.json
+│       │       ├── desktop-schema.json
+│       │       └── linux-schema.json
+│       ├── .gitignore
+│       ├── icons
+│       │   ├── 128x128@2x.png
+│       │   ├── 128x128.png
+│       │   ├── 32x32.png
+│       │   ├── icon.icns
+│       │   ├── icon.ico
+│       │   ├── icon.png
+│       │   ├── Square107x107Logo.png
+│       │   ├── Square142x142Logo.png
+│       │   ├── Square150x150Logo.png
+│       │   ├── Square284x284Logo.png
+│       │   ├── Square30x30Logo.png
+│       │   ├── Square310x310Logo.png
+│       │   ├── Square44x44Logo.png
+│       │   ├── Square71x71Logo.png
+│       │   ├── Square89x89Logo.png
+│       │   └── StoreLogo.png
+│       ├── src
+│       │   ├── keys.rs
+│       │   ├── lib.rs
+│       │   ├── main.rs
+│       │   ├── main.rs.bak
+│       │   └── main.rs.bak.1756668609
+│       └── tauri.conf.json
+├── backup_1756677832
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── assets
+│   │   │   └── react.svg
+│   │   ├── components
+│   │   │   ├── ApiKeysPage.tsx
+│   │   │   ├── ChatLite.tsx
+│   │   │   ├── ChatLite.tsx.bak
+│   │   │   ├── ChatWithHistory.tsx
+│   │   │   └── PassphraseManager.tsx
+│   │   ├── main.tsx
+│   │   ├── storage
+│   │   │   ├── conversation.ts
+│   │   │   ├── crypto.ts
+│   │   │   └── session.ts
+│   │   └── vite-env.d.ts
+│   └── src-tauri
+│       ├── build.rs
+│       ├── capabilities
+│       │   └── default.json
+│       ├── Cargo.lock
+│       ├── Cargo.toml
+│       ├── Cargo.toml.bak
+│       ├── gen
+│       │   └── schemas
+│       │       ├── acl-manifests.json
+│       │       ├── capabilities.json
+│       │       ├── desktop-schema.json
+│       │       └── linux-schema.json
+│       ├── .gitignore
+│       ├── icons
+│       │   ├── 128x128@2x.png
+│       │   ├── 128x128.png
+│       │   ├── 32x32.png
+│       │   ├── icon.icns
+│       │   ├── icon.ico
+│       │   ├── icon.png
+│       │   ├── Square107x107Logo.png
+│       │   ├── Square142x142Logo.png
+│       │   ├── Square150x150Logo.png
+│       │   ├── Square284x284Logo.png
+│       │   ├── Square30x30Logo.png
+│       │   ├── Square310x310Logo.png
+│       │   ├── Square44x44Logo.png
+│       │   ├── Square71x71Logo.png
+│       │   ├── Square89x89Logo.png
+│       │   └── StoreLogo.png
+│       ├── src
+│       │   ├── keys.rs
+│       │   ├── lib.rs
+│       │   ├── main.rs
+│       │   ├── main.rs.bak
+│       │   └── main.rs.bak.1756668609
+│       └── tauri.conf.json
+├── backup_1756678712
+├── backup_1756679637
+│   └── ChatWithHistory.tsx.bak
+├── backup_1756680267
+│   └── ChatWithHistory.tsx.bak
+├── backup_20250831-195313
+├── backup_pre_patch
+│   ├── ChatLite.tsx.bak
+│   ├── index.html
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── tsconfig.node.json
+├── backup_pre_update
+│   ├── backup_1756659637
+│   │   ├── conversation.ts
+│   │   ├── crypto.ts
+│   │   ├── main.rs
+│   │   └── PassphraseManager.tsx
+│   ├── backup_20250831-195313
+│   ├── backup_pre_patch
+│   │   ├── ChatLite.tsx.bak
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   └── tsconfig.node.json
+│   ├── Cargo.toml.bak
+│   ├── ChatLite.tsx.bak
+│   ├── main.rs
+│   ├── main.rs.bak
+│   └── tsconfig.json
+├── BatouLab_Maestro_Presentation.md
+├── batou_lab_rapport_de_projet_v_0.md
+├── BRANDING.md
+├── ChatWithHistory.tsx
+├── fix_decrypt.sh
+├── fix_rust.sh
+├── .github
+│   └── workflows
+│       └── ci.yml
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── public
+│   ├── favicon.png
+│   ├── tauri.svg
+│   └── vite.svg
+├── README.md
+├── roadmap sauvegarde des conversation
+├── roadmap_sauvegarde_des_conversation.md
+├── src
+│   ├── App.css
+│   ├── App.tsx
+│   ├── App.tsx.bak
+│   ├── assets
+│   │   └── react.svg
+│   ├── components
+│   │   ├── ApiKeysPage.tsx
+│   │   ├── ChatLite.tsx
+│   │   ├── ChatLite.tsx.bak
+│   │   ├── ChatWithHistory.tsx
+│   │   ├── ChatWithHistory.tsx.bak
+│   │   └── PassphraseManager.tsx
+│   ├── main.tsx
+│   ├── storage
+│   │   ├── conversation.ts
+│   │   ├── crypto.ts
+│   │   ├── session.ts
+│   │   └── snapshots.ts
+│   ├── styles.css
+│   └── vite-env.d.ts
+├── src-tauri
+│   ├── build.rs
+│   ├── capabilities
+│   │   ├── default.json
+│   │   └── http-mistral.json
+│   ├── Cargo.lock
+│   ├── Cargo.toml
+│   ├── Cargo.toml.bak
+│   ├── gen
+│   │   └── schemas
+│   │       ├── acl-manifests.json
+│   │       ├── capabilities.json
+│   │       ├── desktop-schema.json
+│   │       └── linux-schema.json
+│   ├── .gitignore
+│   ├── icons
+│   │   ├── 128x128@2x.png
+│   │   ├── 128x128.png
+│   │   ├── 32x32.png
+│   │   ├── icon.icns
+│   │   ├── icon.ico
+│   │   ├── icon.png
+│   │   ├── Square107x107Logo.png
+│   │   ├── Square142x142Logo.png
+│   │   ├── Square150x150Logo.png
+│   │   ├── Square284x284Logo.png
+│   │   ├── Square30x30Logo.png
+│   │   ├── Square310x310Logo.png
+│   │   ├── Square44x44Logo.png
+│   │   ├── Square71x71Logo.png
+│   │   ├── Square89x89Logo.png
+│   │   └── StoreLogo.png
+│   ├── src
+│   │   ├── chat_api.rs.bak
+│   │   ├── keys.rs
+│   │   ├── lib.rs
+│   │   ├── main.rs
+│   │   ├── main.rs.bak
+│   │   └── main.rs.bak.1756668609
+│   └── tauri.conf.json
+├── token et lauching
+├── .token et lauching.kate-swp
+├── tsconfig.json
+├── tsconfig.node.json
+├── tsconfig.tmp
+├── update.sh
+└── vite.config.ts
+
+59 directories, 246 files
+superbatou@Cedrus-Atlantica:~/batouLabV0/batouLab$

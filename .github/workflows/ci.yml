@@ -1,0 +1,35 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install system deps
+        run: sudo apt-get update && sudo apt-get install -y build-essential libssl-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev libxdo-dev
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            src-tauri/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Install deps
+        run: npm ci
+      - name: Build frontend
+        run: npm run build
+      - name: Build Rust
+        working-directory: src-tauri
+        run: cargo build --release

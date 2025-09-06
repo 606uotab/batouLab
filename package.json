@@ -1,16 +1,19 @@
 {
   "name": "batoulab-app",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "build:app": "tauri build"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.8.0",
+    "@tauri-apps/plugin-fs": "^2.4.2",
+    "@tauri-apps/plugin-http": "^2.5.2",
     "@tauri-apps/plugin-opener": "^2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

@@ -1,0 +1,114 @@
+import { useEffect, useRef, useState } from "react";
+import { invoke } from "@tauri-apps/api/core";
+
+type Msg = { role: "user" | "assistant" | "system"; content: string };
+
+const MISTRAL_MODELS = [
+  { id: "mistral-small-latest",  label: "mistral-small-latest",  desc: "Petit, généraliste, contexte 128k." },
+  { id: "mistral-medium-latest", label: "mistral-medium-latest", desc: "Medium 3.x multimodal, 128k, bon par défaut." },
+  { id: "mistral-large-latest",  label: "mistral-large-latest",  desc: "Alias compatible, pointe vers la version large courante." },
+  { id: "codestral-latest",      label: "codestral-latest",      desc: "Modèle code (actuel codestral-2508), contexte étendu." },
+  { id: "devstral-medium-2507",  label: "devstral-medium-2507",  desc: "Ingénierie logicielle outillée, robuste pour le dev." },
+  { id: "magistral-medium-2507", label: "magistral-medium-2507", desc: "Raisonnement renforcé sur tâches complexes." },
+];
+
+export default function ChatLite() {
+  const [model, setModel] = useState<string>("mistral-small-latest");
+  const [tip, setTip] = useState<string>("");
+  const tipTimer = useRef<number | null>(null);
+
+  const [messages, setMessages] = useState<Msg[]>([]);
+  const [input, setInput] = useState<string>("");
+  const [busy, setBusy] = useState<boolean>(false);
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
+  }, [messages]);
+
+  function onModelChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const next = e.target.value;
+    setModel(next);
+    const info = MISTRAL_MODELS.find(m => m.id === next)?.desc ?? "";
+    setTip(info);
+    if (tipTimer.current) window.clearTimeout(tipTimer.current);
+    tipTimer.current = window.setTimeout(() => setTip(""), 10_000);
+  }
+
+  async function send() {
+    const content = input.trim();
+    if (!content || busy) return;
+    const msgs: Msg[] = [...messages, { role: "user", content }];
+    setMessages(msgs);
+    setInput("");
+    setBusy(true);
+    try {
+      console.info("CALL provider=mistral model=" + model);
+      const result = await invoke<string>("chat_complete", {
+        input: { provider: "mistral", model, messages: msgs }
+      });
+      setMessages([...msgs, { role: "assistant", content: result }]);
+    } catch (e: any) {
+      setMessages([...msgs, { role: "assistant", content: "Erreur: " + String(e) }]);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  function onKey(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      void send();
+    }
+  }
+
+  return (
+    <div style={{ padding: 16, display: "grid", gap: 12 }}>
+      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+        <label style={{ whiteSpace: "nowrap" }}>Mistral · modèle:</label>
+        <select
+          value={model}
+          onChange={onModelChange}
+          className="model-select"
+          style={{ minWidth: 280 }}
+        >
+          {MISTRAL_MODELS.map(m => (
+            <option key={m.id} value={m.id}>{m.label}</option>
+          ))}
+        </select>
+      </div>
+
+      {tip && (
+        <div className="model-tip" role="status" aria-live="polite">
+          {tip}
+        </div>
+      )}
+
+      <div
+        ref={listRef}
+        style={{ height: "55vh", overflow: "auto", border: "1px solid #444", borderRadius: 10, padding: 12 }}
+      >
+        {messages.map((m, i) => (
+          <div key={i} style={{ margin: "8px 0" }}>
+            <strong>{m.role === "user" ? "Toi" : m.role === "assistant" ? "IA" : "Systeme"}</strong>
+            <div style={{ whiteSpace: "pre-wrap" }}>{m.content}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ display: "flex", gap: 8 }}>
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={onKey}
+          placeholder={busy ? "En cours..." : "Écris un message et Entrée"}
+          style={{ flex: 1, padding: "10px 12px", borderRadius: 8, border: "1px solid #444" }}
+          disabled={busy}
+        />
+        <button onClick={send} disabled={busy} style={{ padding: "10px 14px", borderRadius: 8 }}>
+          Envoyer
+        </button>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,236 @@
+/* ===== Thème clair + base ===== */
+:root { color-scheme: light; }
+:root{
+  --bg:#ffffff; --text:#000000; --border:#e5e7eb; --hover:#f3f4f6; --panel:#ffffff;
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%;}
+body{margin:0;background:var(--bg);color:var(--text);
+     font:14px/1.35 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+     overflow:hidden;}
+
+/* Firefox */
+*{scrollbar-width:auto; scrollbar-color:#9ca3af #f3f4f6;}
+/* WebKit/Chromium */
+::-webkit-scrollbar{width:14px;height:14px}
+::-webkit-scrollbar-thumb{background:#c1c7d0;border-radius:8px;border:3px solid #f5f7fa}
+::-webkit-scrollbar-track{background:#f5f7fa}
+
+/* ===== Layout ===== */
+.app{display:flex;height:100%;width:100%;background:var(--bg);color:var(--text)}
+
+/* Sidebar: header+controls fixes, LISTE qui défile seule */
+.sidebar{width:320px;min-width:56px;border-right:1px solid var(--border);
+         display:flex;flex-direction:column;background:var(--panel);color:var(--text);
+         transition:width 150ms ease;overflow:hidden}
+.sidebar.collapsed{width:56px}
+.sidebar-header{display:flex;gap:8px;align-items:center;padding:8px;flex:0 0 auto}
+.sidebar-controls{padding:0 8px 8px 8px;flex:0 0 auto}
+.sidebar-list{
+  flex:1 1 auto;min-height:0;
+  overflow-y:scroll;
+  scrollbar-gutter:stable both-edges;
+  padding:0 8px 8px 8px
+}
+.conv{border:1px solid var(--border);border-radius:10px;padding:8px;margin-bottom:8px;
+      display:flex;flex-direction:column;gap:6px;cursor:pointer;background:var(--panel)}
+.conv.active{border-color:var(--text)}
+.conv-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.conv-actions{display:flex;gap:6px}
+.label{color:var(--text)}
+.muted{color:#6b7280}
+
+/* Main: header fixe, messages défilent, composer fixe */
+.main{flex:1 1 auto;display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--bg)}
+.header{flex:0 0 48px;display:flex;align-items:center;gap:8px;padding:0 12px;
+        border-bottom:1px solid var(--border);background:var(--panel)}
+.messages{
+  flex:1 1 auto;min-height:0;
+  overflow-y:scroll;
+  scrollbar-gutter:stable both-edges;
+  padding:16px;position:relative;background:var(--bg)
+}
+.messages .inner{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.msg{border:1px solid var(--border);border-radius:10px;padding:10px 12px;white-space:pre-wrap}
+.msg.user{background:#f8fafc;color:#111}
+.msg.assistant{background:#ffffff;color:#111}
+.who{font-size:12px;color:#6b7280;margin-bottom:4px;display:flex;gap:8px;align-items:center}
+.who .ts{font-variant-numeric: tabular-nums; opacity:.8}
+
+/* Composer */
+.composer{flex:0 0 auto;border-top:1px solid var(--border);padding:8px;background:var(--panel)}
+.composer .row{display:flex;gap:8px;align-items:flex-end}
+.textarea{flex:1;resize:none;border:1px solid var(--border);border-radius:10px;
+          padding:10px 12px;background:#fff;font-size:14px;color:#111;min-height:44px;max-height:200px;overflow:auto}
+.hint{margin-top:4px;font-size:11px;color:#6b7280}
+
+/* Contrôles */
+.linkbtn{border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:#fff;font-size:12px;cursor:pointer;color:#111}
+.linkbtn:hover{background:var(--hover)}
+.select,.input{width:100%;border:1px solid var(--border);border-radius:10px;padding:6px 8px}
+.right{margin-left:auto}
+.small{font-size:12px}
+.badge{font-size:11px;border:1px solid var(--border);border-radius:6px;padding:2px 6px;background:#fff;color:#111}
+
+/* Bouton rond “aller en bas” (triangle noir) */
+.go-bottom{position:sticky;bottom:16px;align-self:flex-end;margin-top:-40px;
+           width:36px;height:36px;border-radius:999px;border:1px solid var(--border);
+           background:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.go-bottom::before{content:"";display:block;width:0;height:0;
+                   border-left:7px solid transparent;border-right:7px solid transparent;border-top:10px solid #000}
+.go-bottom:hover{background:var(--hover)}
+
+/* Bouton flottant pour rouvrir la sidebar quand repliée */
+.toggle-fab{position:fixed;left:8px;top:8px;z-index:1000;border:1px solid var(--border);
+            border-radius:999px;padding:8px 10px;background:#fff;cursor:pointer}
+
+/* Animations respectueuses */
+@media (prefers-reduced-motion: no-preference) {
+  .anim-in{animation:fadeSlide .18s ease both}
+  @keyframes fadeSlide{
+    from{opacity:0; transform:translateY(6px)}
+    to{opacity:1; transform:translateY(0)}
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px){ .sidebar{width:260px} }
+@media (max-width: 700px){ .sidebar{width:56px} }
+
+
+/* === Patch: rétablir le scroll global (tout descend) === */
+html,body,#root{height:auto !important;}
+body{overflow-y:scroll !important;}          /* barre principale toujours visible */
+.app{min-height:100vh !important; height:auto !important;}
+.main{min-height:auto !important;}
+/* désactive les scrollbars internes pour revenir au comportement initial */
+.sidebar,.sidebar-list,.messages{overflow:visible !important;}
+/* évite le décalage quand la barre apparaît */
+html{scrollbar-gutter:stable;}
+/* Stylise la barre pour WebKit/Chromium (Tauri WebView) */
+::-webkit-scrollbar{width:14px;height:14px}
+::-webkit-scrollbar-thumb{background:#c1c7d0;border-radius:8px;border:3px solid #f5f7fa}
+::-webkit-scrollbar-track{background:#f5f7fa}
+
+/* === Fin patch === */
+
+/* ===== Ajout UI: Model Selector ===== */
+/* --- Model selector --- */
+.models-pane{border:1px solid var(--border);border-radius:12px;background:#fff}
+.models-section{padding:8px}
+.models-title{font-weight:600;margin:4px 0 8px}
+.models-scroll{max-height:180px;overflow:auto;display:flex;flex-direction:column;gap:6px}
+.model-pill{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  border:1px solid var(--border);border-radius:10px;background:#fff;padding:8px 10px;cursor:pointer}
+.model-pill:hover{background:var(--hover)}
+.model-pill.active{border-color:#111}
+.pill-name{font-size:13px}
+.pill-badge{font-size:11px;border:1px solid var(--border);border-radius:999px;padding:2px 6px;background:#f5f5f5}
+
+/* Popover d’explication (bulle) */
+.model-pop{position:fixed;right:16px;bottom:16px;max-width:380px;z-index:2000;
+  background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.model-pop-title{font-weight:700;padding:12px 12px 0}
+.model-pop-body{padding:8px 12px 12px;color:#374151;white-space:pre-wrap}
+.model-pop-actions{display:flex;justify-content:flex-end;padding:0 12px 12px}
+
+
+/* === Model dropdown v2 === */
+/* === Model dropdown v2 === */
+.models-wrap{position:relative;display:block}
+.model-toggle{width:100%;display:grid;grid-template-columns:1fr auto auto;gap:8px;
+  align-items:center;border:1px solid var(--border);border-radius:10px;background:#fff;
+  padding:8px 10px;cursor:pointer}
+.model-toggle:hover{background:var(--hover)}
+.model-toggle .current{font-size:12px;color:#374151}
+.model-toggle .chev{opacity:.6}
+
+.model-menu{position:relative;margin-top:8px;border:1px solid var(--border);border-radius:12px;
+  background:#fff;padding:8px;box-shadow:0 12px 30px rgba(0,0,0,.10);z-index:10}
+.models-scroll{max-height:220px;overflow:auto;display:flex;flex-direction:column;gap:6px}
+.model-pill{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  border:1px solid var(--border);border-radius:10px;background:#fff;padding:8px 10px;cursor:pointer}
+.model-pill:hover{background:var(--hover)}
+.model-pill.active{border-color:#111}
+.pill-name{font-size:13px}
+.pill-badge{font-size:11px;border:1px solid var(--border);border-radius:999px;padding:2px 6px;background:#f5f5f5}
+
+.others-toggle{margin-top:8px;width:100%;text-align:left;border:1px dashed var(--border);
+  border-radius:10px;background:#fff;padding:8px 10px;cursor:pointer}
+.others-toggle:hover{background:var(--hover)}
+
+.others-panel{position:absolute;left:calc(100% + 8px);top:0;width:300px;max-height:260px;
+  border:1px solid var(--border);border-radius:12px;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.10);
+  padding:8px;z-index:20;display:flex;flex-direction:column;gap:8px}
+.others-actions{display:flex;justify-content:flex-end}
+
+.model-pop{position:fixed;right:16px;bottom:16px;max-width:380px;z-index:2000;
+  background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.18);
+  transition:box-shadow .15s ease, opacity .2s ease}
+/* halo argenté au survol */
+.model-pop:hover{box-shadow:0 0 0 2px #c0c0c0, 0 20px 50px rgba(0,0,0,.18)}
+.model-pop-title{font-weight:700;padding:12px 12px 0}
+.model-pop-body{padding:8px 12px 12px;color:#374151;white-space:pre-wrap}
+.model-pop-actions{display:flex;justify-content:flex-end;padding:0 12px 12px}
+
+/* fade-out dégradé lors de la disparition programmée */
+@keyframes popFade {
+  from { opacity:1; transform:translateY(0) }
+  to   { opacity:0; transform:translateY(6px) }
+}
+.model-pop.fade-out{animation:popFade 1s ease forwards}
+
+
+/* ===== Ajout UI: Model dropdown v3 ===== */
+/* === Model dropdown v3 (overlay + pop top-left) === */
+.models-wrap{position:relative;display:block}
+.model-toggle{width:100%;display:grid;grid-template-columns:1fr auto auto;gap:8px;
+  align-items:center;border:1px solid var(--border);border-radius:10px;background:#fff;
+  padding:8px 10px;cursor:pointer}
+.model-toggle:hover{background:var(--hover)}
+.model-toggle .current{font-size:12px;color:#374151}
+.model-toggle .chev{opacity:.6}
+
+/* overlay: le menu recouvre, ne pousse pas le layout */
+.model-menu{position:absolute;left:0;top:calc(100% + 6px);width:100%;
+  border:1px solid var(--border);border-radius:12px;background:#fff;padding:8px;
+  box-shadow:0 12px 30px rgba(0,0,0,.10);z-index:100}
+.models-scroll{max-height:220px;overflow:auto;display:flex;flex-direction:column;gap:6px}
+.model-pill{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  border:1px solid var(--border);border-radius:10px;background:#fff;padding:8px 10px;cursor:pointer}
+.model-pill:hover{background:var(--hover)}
+.model-pill.active{border-color:#111}
+.pill-name{font-size:13px}
+.pill-badge{font-size:11px;border:1px solid var(--border);border-radius:999px;padding:2px 6px;background:#f5f5f5}
+
+.others-toggle{margin-top:8px;width:100%;text-align:left;border:1px dashed var(--border);
+  border-radius:10px;background:#fff;padding:8px 10px;cursor:pointer}
+.others-toggle:hover{background:var(--hover)}
+
+/* sous-fenêtre attachée au menu principal */
+.others-panel{position:absolute;left:calc(100% + 8px);top:0;width:300px;max-height:260px;
+  border:1px solid var(--border);border-radius:12px;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.10);
+  padding:8px;z-index:150;display:flex;flex-direction:column;gap:8px}
+.others-actions{display:flex;justify-content:flex-end}
+
+/* Bulle explicative déplacée en haut à gauche de la zone conversation
+   sans recouvrir la sidebar: left injecté en inline style depuis TS */
+.model-pop{position:fixed;top:16px;right:auto;bottom:auto;
+  background:#fff;border:1px solid var(--border);border-radius:12px;max-width:420px;
+  box-shadow:0 20px 50px rgba(0,0,0,.18);z-index:1000;
+  transition:box-shadow .15s ease, opacity .2s ease}
+.model-pop:hover{box-shadow:0 0 0 2px #c0c0c0, 0 20px 50px rgba(0,0,0,.18)} /* halo gris argent */
+.model-pop-title{font-weight:700;padding:12px 12px 0}
+.model-pop-body{padding:8px 12px 12px;color:#374151;white-space:pre-wrap}
+.model-pop-actions{display:flex;justify-content:flex-end;padding:0 12px 12px}
+
+/* fade-out dégradé lors de la disparition programmée (1s) */
+@keyframes popFade {
+  from { opacity:1; transform:translateY(0) }
+  to   { opacity:0; transform:translateY(6px) }
+}
+.model-pop.fade-out{animation:popFade 1s ease forwards}
+
+
+/* === Version badge === */
+.brand{font-weight:700;margin-right:8px}
