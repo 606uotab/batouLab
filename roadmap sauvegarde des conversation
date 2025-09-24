@@ -1,0 +1,111 @@
+Schéma disque
+
+Racine: ~/.config/BatouLab/chats/
+
+index.json (liste sessions: id, title, model, updatedAt, flags)
+
+sessions/<id>.json (messages, meta)
+
+snapshots/<id>/<ts>.json
+
+versions.json (versionning schéma)
+
+Crypto (point 1)
+
+Dérivation: Argon2id {m=256MB, t=3, p=1}, salt 16B.
+
+Clé: 32B. Chiffrement: XChaCha20-Poly1305 (nonce 24B), AAD = {id, version}.
+
+Enveloppe: {v, kdf:{params,salt}, nonce, ct}.
+
+Verrouillage: clé en RAM. Auto-lock via timer. Keyring OS optionnel (clé chiffrée par passphrase).
+
+Cmd Tauri: set_passphrase, lock, unlock, status.
+
+Sauvegarde par fichier + index (point 2)
+
+API Rust: save_session(id, json), load_session(id), save_index(json), load_index().
+
+Ecriture atomique: .tmp + rename.
+
+Rebuild index: scanner sessions/ si index.json manquant.
+
+Snapshots & reprise (point 3)
+
+Timer autosave N min (configurable). Hook: after message append.
+
+Seuil 50 messages → snapshot.
+
+Démarrage: si sessions/<id>.json corrompu → charger dernier snapshot.
+
+UI: “Restaurer snapshot”.
+
+Recherche locale (point 4)
+
+Index TF-IDF en mémoire. Fichiers persistants search/index.bin.
+
+Champs: title, messages.content, model, date.
+
+API: search(query, filters) -> ids + passages.
+
+Cible: <200 ms sur 10k messages.
+
+Export/Import (point 5 + bouton)
+
+Export JSON lisible et Markdown. Dossier par défaut ~/BatouLab_exports/.
+
+Option export chiffré (même enveloppe).
+
+Import: validation schéma, dédup par id, mappage modèle si inconnu.
+
+UI: bouton “Exporter” (session/tout), “Importer…”.
+
+Profils de modèles (point 6)
+
+profiles.json: {id, label, provider, model, temp, max_tokens, system_prompt}.
+
+UI: sélecteur 1-clic. Afficher coût estimé (token budget local).
+
+Applique les paramètres au chat courant.
+
+Limites & quotas (point 7)
+
+Compteurs locaux: tokens in/out, appels, par jour et par profil.
+
+Seuils configurables. Alerte bandeau. “Mode éco” = réduire max_tokens, no-stream.
+
+Journal local usage/YYYY-MM-DD.json.
+
+Verrouillage manuel + timer (point 8)
+
+UI: bouton “Verrouiller maintenant”.
+
+Timer inactivité (mousemove/keydown). Au lock: purge clé en RAM, UI masque contenu.
+
+Déverrouillage: prompt passphrase.
+
+Flux passphrase
+
+Au premier chiffrement: setup passphrase + test dérivation.
+
+Option “se souvenir jusqu’au verrouillage/fermeture”.
+
+Changement passphrase: déchiffrer puis ré-chiffrer.
+
+Migration
+
+v0 en clair → v1: lire index.json + sessions/*.json, chiffrer, écrire nouvelle arbo, backup migrations/backup-<ts>/.
+
+Idempotent, journal migrations/log.json.
+
+Erreurs & intégrité
+
+Hash fichier (BLAKE3) en footer externe *.blake3 pour détection corruption.
+
+Récupération: retenter, sinon snapshot précédent.
+
+Tests à passer
+
+Corruption fichier, lock/unlock, perte passphrase, 10k messages, crash milieu d’écriture, recherche 10k en <200 ms.
+
+Export/Import multi-sessions, collisions d’IDs.
