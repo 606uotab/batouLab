@@ -1,0 +1,45 @@
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize, Clone)]
+pub struct ChatMessage { pub role: String, pub content: String }
+
+#[derive(Deserialize)]
+pub struct ChatInput {
+  pub model: String,
+  pub messages: Vec<ChatMessage>,
+  #[serde(default)]
+  pub provider: Option<String>,
+}
+
+#[tauri::command]
+pub async fn chat_complete(input: ChatInput) -> Result<String, String> {
+  let provider = input.provider.unwrap_or_else(|| "mistral".into());
+  let key_env = if provider == "mistral" { "MISTRAL_API_KEY" } else { "OPENAI_API_KEY" };
+  let key = std::env::var(key_env).map_err(|_| format!("clé manquante: {}", key_env))?;
+
+  let url = if provider == "mistral" {
+    "https://api.mistral.ai/v1/chat/completions"
+  } else {
+    "https://api.openai.com/v1/chat/completions"
+  };
+
+  let body = serde_json::json!({
+    "model": input.model,
+    "messages": input.messages
+  });
+
+  let cli = reqwest::Client::new();
+  let resp = cli.post(url)
+    .header("Authorization", format!("Bearer {}", key))
+    .json(&body)
+    .send().await.map_err(|e| e.to_string())?;
+
+  let status = resp.status();
+  let v: serde_json::Value = resp.json().await.map_err(|e| e.to_string())?;
+  if !status.is_success() {
+    return Err(format!("API {}: {}", status.as_u16(), v));
+  }
+  let s = v["choices"][0]["message"]["content"].as_str().unwrap_or("").to_string();
+  if s.is_empty() { return Err("Réponse vide".into()); }
+  Ok(s)
+}
