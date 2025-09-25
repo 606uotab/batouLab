@@ -1,0 +1,13 @@
+{
+  "identifier": "http-mistral",
+  "description": "Allow Mistral API calls",
+  "permissions": [
+    "core:default",
+    {
+      "identifier": "http:default",
+      "allow": [
+        { "url": "https://api.mistral.ai/**" }
+      ]
+    }
+  ]
+}

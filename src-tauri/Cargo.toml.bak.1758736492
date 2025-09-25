@@ -1,0 +1,13 @@
+[package]
+name = "batoulab-app"
+version = "0.0.3"
+edition = "2021"
+
+[dependencies]
+tauri = { version = "^2", features = ["macros"] }
+tauri-plugin-opener = "^2"
+tauri-plugin-http = "^2"
+tauri-plugin-fs = "^2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

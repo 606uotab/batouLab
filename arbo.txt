@@ -1,0 +1,112 @@
+.
+├── arbo
+├── arbo.txt
+├── BatouLab_Maestro_Presentation.md
+├── batou_lab_rapport_de_projet_v_0.md
+├── BRANDING.md
+├── ChatWithHistory.tsx
+├── fix_decrypt.sh
+├── fix_rust.sh
+├── .github
+│   └── workflows
+│       └── ci.yml
+├── .gitignore
+├── index.html
+├── package.json
+├── package.json.bak
+├── package-lock.json
+├── public
+│   ├── favicon.png
+│   ├── tauri.svg
+│   └── vite.svg
+├── README.md
+├── roadmap sauvegarde des conversation
+├── roadmap_sauvegarde_des_conversation.md
+├── src
+│   ├── App.css
+│   ├── App.css.bak
+│   ├── App.tsx
+│   ├── App.tsx.bak
+│   ├── assets
+│   │   └── react.svg
+│   ├── components
+│   │   ├── ApiKeysPage.tsx
+│   │   ├── ApiKeysPage.tsx.bak
+│   │   ├── ChatLite.tsx.bak
+│   │   ├── ChatWithHistory.tsx
+│   │   ├── ChatWithHistory.tsx.bak
+│   │   ├── ChatWithHistory.tsx.tmp
+│   │   ├── ModelSelector.tsx
+│   │   ├── ModelSelector.tsx.bak
+│   │   ├── PassphraseManager.tsx
+│   │   └── PassphraseManager.tsx.bak
+│   ├── main.tsx
+│   ├── main.tsx.bak
+│   ├── providers
+│   │   ├── anthropic.rs
+│   │   ├── anthropic.ts
+│   │   ├── index.ts
+│   │   ├── mistral.ts
+│   │   └── openai.ts
+│   ├── runtimeKeys.ts
+│   ├── storage
+│   │   ├── conversation.ts
+│   │   ├── crypto.ts
+│   │   ├── session.ts
+│   │   └── snapshots.ts
+│   ├── styles.css
+│   ├── version.ts
+│   └── vite-env.d.ts
+├── src-tauri
+│   ├── build.rs
+│   ├── capabilities
+│   │   ├── default.json
+│   │   └── http-mistral.json
+│   ├── Cargo.lock
+│   ├── Cargo.toml
+│   ├── Cargo.toml.bak
+│   ├── .gitignore
+│   ├── icons
+│   │   ├── 128x128@2x.png
+│   │   ├── 128x128.png
+│   │   ├── 32x32.png
+│   │   ├── icon.icns
+│   │   ├── icon.ico
+│   │   ├── icon.png
+│   │   ├── Square107x107Logo.png
+│   │   ├── Square142x142Logo.png
+│   │   ├── Square150x150Logo.png
+│   │   ├── Square284x284Logo.png
+│   │   ├── Square30x30Logo.png
+│   │   ├── Square310x310Logo.png
+│   │   ├── Square44x44Logo.png
+│   │   ├── Square71x71Logo.png
+│   │   ├── Square89x89Logo.png
+│   │   └── StoreLogo.png
+│   ├── src
+│   │   ├── chat_api.rs.bak
+│   │   ├── keys.rs
+│   │   ├── lib.rs
+│   │   ├── main.rs
+│   │   ├── main.rs.bak
+│   │   ├── main.rs.bak.1756668609
+│   │   ├── providers
+│   │   │   ├── anthropic.rs
+│   │   │   ├── mistral.rs
+│   │   │   ├── mod.rs
+│   │   │   └── openai.rs
+│   │   └── util
+│   │       └── mod.rs
+│   ├── tauri.conf.json
+│   └── tauri.conf.json.bak
+├── token et lauching
+├── tsconfig.json
+├── tsconfig.node.json
+├── tsconfig.tmp
+├── update.sh
+├── VERSION.md
+├── vite.config.ts
+└── .vscode
+    └── extensions.json
+
+16 directories, 94 files

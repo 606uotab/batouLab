@@ -1,0 +1,6 @@
+// Stub lib pour satisfaire Cargo [lib].
+// Ne pas mettre de Tauri::Builder ici (uniquement dans main.rs).
+#![allow(dead_code)]
+
+// Module vide servant de placeholder pour éviter les warnings.
+pub mod marker {}
