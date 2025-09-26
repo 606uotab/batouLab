@@ -1,3 +1,16 @@
+## v0.0.3.b (alpha) – 2025-09-25
+- Première version stable **multi-providers** :
+  - Support Mistral, OpenAI et Anthropic (Claude)
+  - Sélecteur de modèles intégré
+  - Saisie et gestion des clés API
+- Nouvelle UI pour le chat :
+  - Sidebar avec historique et export TXT
+  - Messages avec timestamps
+  - Composer amélioré (double Entrée / Alt+Entrée pour envoyer)
+- Nettoyage et restructuration du code Rust (providers séparés)
+- Ajout du système de **tags Git** et publication GitHub
+
+
 # batouLab V0.0.3 — alpha — 2025-09-23T19:19:46+0200
 
 ## Changement de stratégie

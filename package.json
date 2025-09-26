@@ -1,7 +1,7 @@
 {
   "name": "batoulab-app",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.3-b",
   "type": "module",
   "scripts": {
     "dev": "vite",

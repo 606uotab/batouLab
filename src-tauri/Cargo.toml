@@ -1,6 +1,6 @@
 [package]
 name = "batoulab-app"
-version = "0.0.3"
+version = "0.0.3-b"
 edition = "2021"
 
 # src-tauri/Cargo.toml
