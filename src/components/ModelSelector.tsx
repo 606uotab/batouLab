@@ -14,7 +14,7 @@ const MODELS: Record<string, Meta> = {
   "claude-3-5-haiku-latest":  { id:"claude-3-5-haiku-latest",  label:"claude-haiku-3.5", short:"Très réactif.", long:"Rapide et économique. Bon pour UX et tool-use." },
 
   // --- Mistral (liste étendue) ---
-  "mistral-small-latest":   { id:"mistral-small-latest",   label:"mistral-small",   short:"Rapide & éco.",                       long:"Généraliste léger, bonne latence/coût, contexte long pour sa taille." },
+  "mistral-small-latest":   { id:"mistral-small-latest",   label:"mistral-small",   short:"Rapide, éco.",                       long:"Généraliste léger, bonne latence/coût, contexte long pour sa taille." },
   "mistral-medium-latest":  { id:"mistral-medium-latest",  label:"mistral-medium",  short:"Polyvalent premium.",                 long:"Planification, synthèse, tool calling et code. Plus robuste que small." },
   "magistral-medium-latest":{ id:"magistral-medium-latest",label:"magistral-medium",short:"Reasoning intensif.",                 long:"Meilleure fiabilité sur tâches complexes; latence/coût supérieurs." },
   "codestral-latest":       { id:"codestral-latest",       label:"codestral",       short:"Spécialiste code.",                   long:"Complétion/génération, FIM, tests/reviews. Contexte long." },

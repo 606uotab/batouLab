@@ -1,0 +1,12 @@
+{
+  "identifier": "main",
+  "description": "Main window permissions",
+  "permissions": [
+    "opener:default",
+    "http:default",
+    "dialog:default",
+    "fs:default",
+    "sql:default",
+    "sql:allow-load"
+  ]
+}

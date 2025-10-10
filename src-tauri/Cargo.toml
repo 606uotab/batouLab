@@ -1,14 +1,15 @@
 [package]
 name = "batoulab-app"
-version = "0.0.3-b"
+version = "0.0.4"
 edition = "2021"
 
-# src-tauri/Cargo.toml
 [dependencies]
 tauri = { version = "^2", features = [] }
 tauri-plugin-opener = "^2"
 tauri-plugin-http = "^2"
 tauri-plugin-fs = "^2"
+tauri-plugin-sql = { version = "2", features = ["sqlite"] }
+tauri-plugin-dialog = "^2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }

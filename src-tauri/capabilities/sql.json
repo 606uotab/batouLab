@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "sql",
+  "description": "SQLite access for conversations DB",
+  "windows": ["main"],
+  "permissions": ["sql:default"]
+}

@@ -1,13 +1,18 @@
 {
   "identifier": "http-mistral",
-  "description": "Allow Mistral API calls",
+  "description": "HTTP allowlist for model providers",
   "permissions": [
-    "core:default",
-    {
-      "identifier": "http:default",
+    "http:default"
+  ],
+  "windows": ["main"],
+  "platforms": ["linux", "macOS", "windows"],
+  "scope": {
+    "http": {
       "allow": [
-        { "url": "https://api.mistral.ai/**" }
+        "https://api.mistral.ai/**",
+        "https://api.openai.com/**",
+        "https://api.anthropic.com/**"
       ]
     }
-  ]
+  }
 }

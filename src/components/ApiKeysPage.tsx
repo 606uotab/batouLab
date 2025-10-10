@@ -7,47 +7,57 @@ export default function ApiKeysPage() {
   const [anthropic, setAnthropic] = useState(runtimeKeys.anthropic || "");
   const [mistral, setMistral] = useState(runtimeKeys.mistral || "");
 
-  const on = (k: "openai" | "anthropic" | "mistral", v: string) => {
-    if (k === "openai") { setOpenai(v); runtimeKeys.openai = v; }
-    if (k === "anthropic") { setAnthropic(v); runtimeKeys.anthropic = v; }
-    if (k === "mistral") { setMistral(v); runtimeKeys.mistral = v; }
-  };
-
   return (
-    <div className="api-page">
-    <h1 className="api-title">Clés API</h1>
+    <div className="apikeys-page">
+    <h2>Clés API</h2>
 
-    <div className="api-field">
-    <label className="api-label">OpenAI</label>
+    <div className="apikeys-grid">
+    <label>
+    <div>OpenAI</div>
     <input
-    type="text"
-    className="api-input"
+    className="apikey-input"
     placeholder="sk-..."
     value={openai}
-    onChange={(e) => on("openai", e.target.value)}
+    onChange={(e) => {
+      const v = e.target.value;
+      setOpenai(v);
+      runtimeKeys.openai = v.trim();
+    }}
     />
-    </div>
+    </label>
 
-    <div className="api-field">
-    <label className="api-label">Anthropic (Claude)</label>
+    <label>
+    <div>Anthropic (Claude)</div>
     <input
-    type="text"
-    className="api-input"
+    className="apikey-input"
     placeholder="clé Anthropic…"
     value={anthropic}
-    onChange={(e) => on("anthropic", e.target.value)}
+    onChange={(e) => {
+      const v = e.target.value;
+      setAnthropic(v);
+      runtimeKeys.anthropic = v.trim();
+    }}
     />
-    </div>
+    </label>
 
-    <div className="api-field">
-    <label className="api-label">Mistral</label>
+    <label>
+    <div>Mistral</div>
     <input
-    type="text"
-    className="api-input"
-    placeholder="mistral-..."
+    className="apikey-input"
+    placeholder="mistral-…"
     value={mistral}
-    onChange={(e) => on("mistral", e.target.value)}
+    onChange={(e) => {
+      const v = e.target.value;
+      setMistral(v);
+      runtimeKeys.mistral = v.trim();
+    }}
     />
+    </label>
+
+    <div className="apikey-note">
+    Les clés sont <strong>chargées en mémoire uniquement</strong> (aucune persistance).<br />
+    Redémarrer l’app réinitialise ces champs.
+    </div>
     </div>
     </div>
   );
