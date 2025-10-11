@@ -1,16 +1,14 @@
 .
 ├── arbo
+├── arbonew.txt
 ├── arbo.txt
+├── backup-conflicted-1758734232.tgz
 ├── BatouLab_Maestro_Presentation.md
 ├── batou_lab_rapport_de_projet_v_0.md
 ├── BRANDING.md
 ├── ChatWithHistory.tsx
 ├── fix_decrypt.sh
 ├── fix_rust.sh
-├── .github
-│   └── workflows
-│       └── ci.yml
-├── .gitignore
 ├── index.html
 ├── package.json
 ├── package.json.bak
@@ -27,6 +25,7 @@
 │   ├── App.css.bak
 │   ├── App.tsx
 │   ├── App.tsx.bak
+│   ├── ArchivesPage.tsx
 │   ├── assets
 │   │   └── react.svg
 │   ├── components
@@ -39,7 +38,11 @@
 │   │   ├── ModelSelector.tsx
 │   │   ├── ModelSelector.tsx.bak
 │   │   ├── PassphraseManager.tsx
-│   │   └── PassphraseManager.tsx.bak
+│   │   ├── PassphraseManager.tsx.bak
+│   │   └── PersistedChat.tsx
+│   ├── db
+│   │   ├── db.ts
+│   │   └── schema.sql
 │   ├── main.tsx
 │   ├── main.tsx.bak
 │   ├── providers
@@ -53,19 +56,32 @@
 │   │   ├── conversation.ts
 │   │   ├── crypto.ts
 │   │   ├── session.ts
-│   │   └── snapshots.ts
+│   │   ├── snapshots.ts
+│   │   └── storage.fs.ts
 │   ├── styles.css
+│   ├── testDb.ts
 │   ├── version.ts
 │   └── vite-env.d.ts
 ├── src-tauri
 │   ├── build.rs
 │   ├── capabilities
+│   │   ├── conversations.json
+│   │   ├── conversations.json.bak.1758738061
 │   │   ├── default.json
-│   │   └── http-mistral.json
-│   ├── Cargo.lock
+│   │   ├── http-mistral.json
+│   │   ├── main.json
+│   │   └── sql.json
 │   ├── Cargo.toml
 │   ├── Cargo.toml.bak
-│   ├── .gitignore
+│   ├── Cargo.toml.bak.1758736492
+│   ├── Cargo.toml.bak.1758736946
+│   ├── Cargo.toml.bak.1758738061
+│   ├── gen
+│   │   └── schemas
+│   │       ├── acl-manifests.json
+│   │       ├── capabilities.json
+│   │       ├── desktop-schema.json
+│   │       └── linux-schema.json
 │   ├── icons
 │   │   ├── 128x128@2x.png
 │   │   ├── 128x128.png
@@ -87,9 +103,11 @@
 │   │   ├── chat_api.rs.bak
 │   │   ├── keys.rs
 │   │   ├── lib.rs
+│   │   ├── lib.rs.bak.1758738061
 │   │   ├── main.rs
 │   │   ├── main.rs.bak
 │   │   ├── main.rs.bak.1756668609
+│   │   ├── main.rs.bak.1758738061
 │   │   ├── providers
 │   │   │   ├── anthropic.rs
 │   │   │   ├── mistral.rs
@@ -98,15 +116,14 @@
 │   │   └── util
 │   │       └── mod.rs
 │   ├── tauri.conf.json
-│   └── tauri.conf.json.bak
-├── token et lauching
+│   ├── tauri.conf.json.bak
+│   ├── tauri.conf.json.bak.1758735621
+│   └── tauri.conf.json.bak.1758738061
 ├── tsconfig.json
 ├── tsconfig.node.json
 ├── tsconfig.tmp
 ├── update.sh
 ├── VERSION.md
-├── vite.config.ts
-└── .vscode
-    └── extensions.json
+└── vite.config.ts
 
-16 directories, 94 files
+16 directories, 111 files
