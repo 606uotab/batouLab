@@ -1,3 +1,34 @@
+# 🧩 batouLab — Version v0.0.4 (alpha)
+
+**Date de publication :** 11 octobre 2025  
+**Branche :** `alpha`  
+**Tag :** `v0.0.4`
+
+---
+
+## ✨ Nouveautés
+- Refonte graphique complète (cohérence blanc / gris / halo doux)
+- Sélecteur de modèles corrigé :
+  - fond blanc, sélection grise
+  - flèche de dropdown rétablie
+- Sidebar et topbar harmonisées (gris clair unifié)
+- Zone de saisie (“composer”) simplifiée et lisible
+- Intégration de version visible dans la top-bar
+- Navigation fluide entre conversations et archives
+
+---
+
+## 🧠 Comportement corrigé
+- Rafraîchissement dynamique des messages (plus besoin de recharger)
+- Sauvegarde de l’état du modèle par conversation
+- Fix du problème de clé API manquante
+- Correction du hover bleu → halo gris sur tous les boutons
+- Export / import / archivage 100 % fonctionnel
+
+
+> _batouLab v0.0.4 — Agrégateur et orchestrateur de modèles IA_
+
+
 ## v0.0.3.b (alpha) – 2025-09-25
 - Première version stable **multi-providers** :
   - Support Mistral, OpenAI et Anthropic (Claude)
